@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+img{
+  color: blue;
+  font-style: italic;
+  vertical-align: center;
+  cursor: pointer;
+  
+}
+
+summary::-webkit-details-marker{
+  display: none;
+}
+summary::marker{
+  font-size: 0;
+  display: none;
+}

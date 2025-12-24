@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "emp" ALTER COLUMN "mobile_no" SET DATA TYPE BIGINT;

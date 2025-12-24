@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap:
+http://link-pool.vercel.app/sitemap.xml
