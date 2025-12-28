@@ -9,11 +9,10 @@ import { setCartData } from "@/app/redux/cartData/cartDataSlice"
 
 const App = () => {
   const [items, setItems] = useState([])
-  const [carItems, setCartItems] = useState([])
   const dispatch = useDispatch()
+  const [cart, setCart] = useState([])
 
   //get all records from item table
-
   const fetchData = async () => {
     try {
       const res = await fetch("/api/all-items", { cache: "no-store" })
@@ -22,25 +21,39 @@ const App = () => {
     } catch (error) {
       toast("Failed to get items")
     }
-
   }
-
   useEffect(() => {
     fetchData()
+    setCart(JSON.parse(localStorage.getItem("cartData") || "[]"))
+
   }, [])
 
   // handle add to cart 
   const addToCart = (item) => {
-    const res = carItems.find(i => i.item_id === item.item_id)
+    item.qty = 1
+    const cartData = JSON.parse(localStorage.getItem("cartData") || "[]")
+    const res = cartData.find((i) => i.item_id == item.item_id)
+    console.log("res", res);
 
     if (res) {
       toast("Item is alredy in cart")
     } else {
-      dispatch(setCartData(item))
-      setCartItems((carItems) => [...carItems, item])
+      const newCartData = [...cartData, item]
+      localStorage.setItem("cartData", JSON.stringify(newCartData))
+      setCart(JSON.parse(localStorage.getItem("cartData") || "[]"))
     }
-    console.log("adding to cart", carItems);
+  }
 
+  const changeQuantity = (item_id, value) => {
+
+    const cartData = JSON.parse(localStorage.getItem("cartData") || "[]")
+    if (cartData.find(i => i.item_id == item_id).qty === 1 && value === -1) {
+      toast("Minimun 1 item is necessary")
+    }else{
+      const updated = cartData.map(item => item.item_id === item_id ? { ...item, qty: (item.qty || 0) + value } : item)
+      localStorage.setItem("cartData", JSON.stringify(updated))
+      setCart(updated)
+    }
   }
 
 
@@ -62,13 +75,15 @@ const App = () => {
                 <p className="text-sm">Stock: {item.stock}</p>
               </ul>
             </Link>
-            {!carItems.find(i => i.item_id === item.item_id) ?
+            {!cart.find((i) => i.item_id == item.item_id) ?
               <Button onClick={() => addToCart(item)}>Add to cart</Button> :
               <ul
                 className="flex justify-between items-center qty-box w-32 rounded-full border-2 border-orange-500 px-3 bg-slate-300/5">
-                <img className="w-6 " src="../profile_pic.webp" alt="" />
-                <p>3</p>
-                <button className="font-bold pb-1 text-2xl w-6">+</button>
+                <button onClick={() => changeQuantity(item.item_id, -1)} className="font-bold pb-1 text-2xl w-6">-</button>
+                <p>
+                  {cart.find(i => i.item_id == item.item_id).qty}
+                </p>
+                <button onClick={() => changeQuantity(item.item_id, +1)} className="font-bold pb-1 text-2xl w-6">+</button>
               </ul>
             }
           </div>

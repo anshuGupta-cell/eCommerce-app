@@ -5,19 +5,22 @@ import ItemCard from '@/components/itemCard/ItemCard'
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-const cart = ({}) => {
-    
-    const cardItems = useSelector((state)=>state.cardData.cardItems)
-console.log("cardItems", cardItems);
+const cart = ({ }) => {
 
+    const cartItems = useSelector((state) => state.cartData.cartItems)
+    console.log("cardItems", cartItems);
 
     return (
         <main className="py-32 px-2 min-h-[100svh] bg-gradient-to-r from-green-100 via-orange-100 to-yellow-100 dark:bg-gradient-to-r dark:from-slate-800 dark:to-slate-700 ">
 
-            <section className='max-w-5xl m-auto grid gap-3 bg-slate-300/40'>
+            <section className='max-w-5xl m-auto grid gap-3 bg-slate-800'>
                 <div>
-                    <ItemCard />
+                    {cartItems.map((item) => (
+                        <ItemCard item={item}/>
+                    ))}
                 </div>
+
+                {/* Total price and plce order */}
                 <div className='grid justify-center gap-3 px-3 py-2 '>
                     <ul className='flex justify-center gap-1 font-semibold text-xl'>Total
                         <p className='font-bold'>
@@ -26,7 +29,7 @@ console.log("cardItems", cardItems);
                             <sup>00</sup>
                         </p>
                     </ul>
-                    <Button>
+                    <Button >
                         Place Order ( 2 items )
                     </Button>
                 </div>

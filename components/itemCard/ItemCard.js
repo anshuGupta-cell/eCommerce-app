@@ -1,7 +1,9 @@
 import React from 'react'
 import Button from '../button/Button';
 
-const ItemCard = () => {
+const ItemCard = ({ item }) => {
+  console.log(item);
+  
   return (
     <div className="grid p-2 bg-blue-50 dark:bg-blue-50/10 gap-3 rounded-lg ">
       <div >
