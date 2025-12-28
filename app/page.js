@@ -49,7 +49,7 @@ const App = () => {
     const cartData = JSON.parse(localStorage.getItem("cartData") || "[]")
     if (cartData.find(i => i.item_id == item_id).qty === 1 && value === -1) {
       toast("Minimun 1 item is necessary")
-    }else{
+    } else {
       const updated = cartData.map(item => item.item_id === item_id ? { ...item, qty: (item.qty || 0) + value } : item)
       localStorage.setItem("cartData", JSON.stringify(updated))
       setCart(updated)

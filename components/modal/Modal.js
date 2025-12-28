@@ -1,7 +1,11 @@
 import { useRef } from "react";
+import Button from "../button/Button";
 
-const OptionsModal = ({children}) => {
-
+const Modal = (props) => {
+    const {
+        children,
+        btnText
+    } = props
     const modalref = useRef()
 
     // const {a } = params
@@ -19,10 +23,10 @@ const OptionsModal = ({children}) => {
     return (
         <>
             <div onClick={() => { openMenu() }} className="w-full flex">
-                <button className="text-white bg-cyan-500 px-3 py-2 rounded-xl shadow-purple-700 shadow-sm" >Share</button>
+                <Button  >{btnText}</Button>
             </div>
             <div id="OptionsModal" ref={modalref} onClick={(e) => e.target.id === "OptionsModal" && closeMenu()} className="fixed top-0 overflow-hidden h-0 bottom-0 left-0 right-0   opacity-0 bg-gray-900/50 grid place-items-center p-3">
-                <div className="bg-green-900">
+                <div className="w-full">
                     {children}
                 </div>
             </div>
@@ -30,4 +34,4 @@ const OptionsModal = ({children}) => {
     )
 }
 
-export default OptionsModal;
+export default Modal;

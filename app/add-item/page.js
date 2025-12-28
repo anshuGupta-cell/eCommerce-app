@@ -1,6 +1,6 @@
 "use client"
 import Spinner from "@/components/Loader/Spinner"
-import OptionsModal from "@/components/OptionsModal"
+import OptionsModal from "@/components/modal/Modal"
 import { SearchParamsContext } from "next/dist/shared/lib/hooks-client-context.shared-runtime"
 import { useSearchParams } from "next/navigation"
 import React, { Suspense, use, useEffect, useState } from "react"
