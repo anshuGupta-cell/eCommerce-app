@@ -1,10 +1,10 @@
 "use client"
 import { useDispatch, useSelector } from "react-redux"
-import { increment, decrement, incrementByAmount } from "@/app/redux/counter/counterSlice"
+import { increment, decrement } from "@/app/redux/qtyCounter/qtyCounterSlice"
 
 const Counter = () => {
 
-    const count = useSelector((state)=> state.counter.value)
+    const count = useSelector((state)=> state.qtyCounter.qty)
     const dispatch = useDispatch()
     return (
         <>

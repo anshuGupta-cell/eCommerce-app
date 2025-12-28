@@ -1,0 +1,52 @@
+
+.btn {
+    width: fit-content;
+    border-radius: 1rem;
+    background: hsla(79, 100%, 66%, 0.688);
+    color: black;
+    font-size: small;
+    border-bottom: 2px solid black;
+    box-shadow: 0 6px 12px hsla(79, 100%, 66%, 0.7);
+
+    div {
+        position: relative;
+         box-shadow: 0 6px 12px hsla(79, 100%, 66%, 0.7);
+        top: -0.5rem;
+        transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+        transform: scale(1.1);
+        text-wrap: nowrap;
+        padding: .5rem .75rem;
+        background: hsl(79, 100%, 67%);
+        border-radius: 1rem;
+        overflow: hidden;
+        border: 1px solid black;
+        border-bottom: 2px solid black;
+
+
+        &::before {
+            position: absolute;
+            top: -15%;
+            transition: right 1s cubic-bezier(0.19, 1, 0.22, 1);
+            right: 120%;
+            /*120 - 20*/
+            content: "";
+            background-color: hsla(0, 0%, 100%, 0.5);
+            width: .5rem;
+            height: 120%;
+            transform: rotate(-20deg);
+        }
+
+        &:hover::before {
+            content: "";
+            right: -20%;
+        }
+    }
+
+    &:active {
+        div {
+            top: 0;
+            transform: scale(1);
+        }
+    }
+
+}

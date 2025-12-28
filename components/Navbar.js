@@ -14,7 +14,7 @@ import {
 const Navbar = () => {
     const pathName = usePathname()
     const [expanded, setExpanded] = useState(false)
-    const showNavbar = ["/", "/generate", "/about", "/my-trees", "/contact"].includes(pathName)
+    const showNavbar = ["/", "/add-item", "/about", "/cart", "/contact", "/item"].includes(pathName)
     const active = "rounded-lg font-bold text-lg"
     const [isDarkMode, setIsDarkMode] = useState(false)
     const sideMenuRef = useRef()
@@ -64,8 +64,8 @@ const Navbar = () => {
 
                         <div className="hidden md:flex items-center py-2 px-3 text-nowrap text-slate-600 dark:text-slate-300 gap-1 bg-ma-100 dark:bg-slate-700 rounded-full">
                             <Link onClick={closeMenu} className={`p-2 ${pathName == "/" ? active : ""}`} href="/">Home</Link>
-                            <Link onClick={closeMenu} className={`p-2 ${pathName == "/generate" ? active : ""}`} href="/generate">Generate</Link>
-                            <Link onClick={closeMenu} className={`p-2 ${pathName == "/my-trees" ? active : ""}`} href="/my-trees">My trees</Link>
+                            <Link onClick={closeMenu} className={`p-2 ${pathName == "/add-item" ? active : ""}`} href="/add-item">add-item</Link>
+                            <Link onClick={closeMenu} className={`p-2 ${pathName == "/cart" ? active : ""}`} href="/cart">Cart</Link>
                             {/* <Link onClick={closeMenu} className={`p-2 ${pathName == "/about" ? active : ""}`} href="/about">About</Link>
                             <Link onClick={closeMenu} className={`p-2 ${pathName == "/contact" ? active : ""}`} href="/contact">Contact me</Link> */}
                         </div>
@@ -109,8 +109,8 @@ const Navbar = () => {
                     </button>
 
                     <Link onClick={closeMenu} className={`p-2 ${pathName == "/" ? active : ""}`} href="/">Home</Link>
-                    <Link onClick={closeMenu} className={`p-2 ${pathName == "/generate" ? active : ""}`} href="/generate">Generate</Link>
-                    <Link onClick={closeMenu} className={`p-2 ${pathName == "/my-trees" ? active : ""}`} href="/my-trees">My trees</Link>
+                    <Link onClick={closeMenu} className={`p-2 ${pathName == "/add-item" ? active : ""}`} href="/add-item">add-item</Link>
+                    <Link onClick={closeMenu} className={`p-2 ${pathName == "/cart" ? active : ""}`} href="/cart">Cart</Link>
                     {/* <Link onClick={closeMenu} className={`p-2 ${pathName == "/about" ? active : ""}`} href="/about">About</Link>
                     <Link onClick={closeMenu} className={`p-2 ${pathName == "/contact" ? active : ""}`} href="/contact">Contact me</Link> */}
 

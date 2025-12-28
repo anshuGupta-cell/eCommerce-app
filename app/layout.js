@@ -18,7 +18,7 @@ import Providers from "./provider";
 // });
 
 export const metadata = {
-  title: "Link Pool - All in one link in bio",
+  title: "Ammazon - eCommerce platform",
   description: "Create your link pool. All your links at one place. Create smart link pages with custom handles and links.",
   keywords: ["linktree clone", "smart links", "profile link"],
   other: {
