@@ -1,24 +1,30 @@
 import Button from "../button/Button"
 import "./style.css"
 
-const OrderDetails = () => {
+const OrderDetails = (props) => {
+const {
+  placeOrder,
+  mobile,
+  setMobile,
+  address,
+  setAdress
+} = props
 
 
-  
   return (
-    <div className="">
+    <div className="bg-orange-100 dark:bg-slate-800">
 
-      <form className="bg-orange-100 dark:bg-slate-800 form grid gap-3 p-4 rounded">
+      <form className=" form grid gap-3 p-4 rounded" onSubmit={(e)=>placeOrder(e)}>
         <h3 className="font-bold text-xl"> Order Delivery Details</h3>
         <ul>
-          <label for="">Mobile Number</label>
-          <input type="text" placeholder="Enter Mobile Number" />
+          <label >Mobile Number</label>
+          <input type="number" value={mobile} onChange={(e)=>setMobile(e.target.value)} placeholder="Enter Mobile Number" required/>
         </ul>
 
         <h3 className="font-semibold text-lg">Enter Adress Details</h3>
         <ul>
-          <label for="">State</label>
-          <input type="text" placeholder="Enter Adress" />
+          <label >State</label>
+          <input type="text" value={address} onChange={(e)=>setAdress(e.target.value)} placeholder="Enter Adress" required/>
         </ul>
         <ul className="flex justify-end py-2">
           <Button>

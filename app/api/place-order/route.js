@@ -7,28 +7,30 @@ export const POST = async (req) => {
 
     const body = await req.json()
     const {
-        oid, uid, total_amount, address, mobile_no, status, data
+        uid, total_amount, address, mobile, status, cartData
     } = body
+console.log(body);
 
 
-    try {
-        const res = await pool.query(`insert into "order" (oid, uid, total_amount, address, mobile_no, status) values ($1, $2, $3, $4, $5, $6)`, [oid, uid, total_amount, address, mobile_no, status])
+    // try {
+        const res = await pool.query(`insert into "order" (uid, total_amount, address, mobile_no, status) values ($1, $2, $3, $4, $5) returning oid`, [uid, total_amount, address, mobile, status])
+        console.log(res);
 
-        for (let i = 0; i < data.length; i++) {
-            await pool.query(`insert into "order_item" (qty, oid, item_id) values ($1, $2, $3)`, [data[i].qty, oid, data[i].item_id])
+        for (let i = 0; i < cartData.length; i++) {
+            await pool.query(`insert into "order_item" (qty, oid, item_id) values ($1, $2, $3)`, [cartData[i].qty, res.rows[0].oid, cartData[i].item_id])
         }
 
         return Response.json({
             success: true,
             message: "Order placed successfully!",
         })
-    } catch (error) {
-        return Response.json({
-            success: false,
-            message: "Failed to place order. Some error occured!",
-            details: error
-        })
-    }
+    // } catch (error) {
+    //     return Response.json({
+    //         success: false,
+    //         message: "Failed to place order. Some error occured!",
+    //         details: error
+    //     })
+    // }
 }
 
 // Get order and order_items details
