@@ -47,24 +47,24 @@ export const GET = async (req) => {
 }
 
 // delete a link 
-export const DELETE = async (req) => {
+// export const DELETE = async (req) => {
 
-    const { hno, lno } = await req.json()
-    try {
-        await pool.query('DELETE FROM link WHERE lno = $1 and hno = $2', [lno, hno])
-        return Response.json({
-            success: true,
-            message: "Link deleted successfully!",
-        })
-    } catch (error) {
-        return Response.json({
-            success: false,
-            message: "Failed to delete link. Some error occured!",
-            details: error
-        })
-    }
+//     const { hno, lno } = await req.json()
+//     try {
+//         await pool.query('DELETE FROM link WHERE lno = $1 and hno = $2', [lno, hno])
+//         return Response.json({
+//             success: true,
+//             message: "Link deleted successfully!",
+//         })
+//     } catch (error) {
+//         return Response.json({
+//             success: false,
+//             message: "Failed to delete link. Some error occured!",
+//             details: error
+//         })
+//     }
 
-}
+// }
 
 
 // // update a link
