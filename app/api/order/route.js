@@ -22,3 +22,33 @@ export const GET = async (req) => {
         })
     }
 }
+
+const PATCH = async (req) => {
+
+    const {
+        oid,
+        description
+    } = await req.json()
+
+    try {
+        const res = await pool.query(`
+            UPDATE "order" SET
+            description = $1
+            WHERE oid = $2    
+        `, [description, oid])
+        console.log(res);
+
+        return Response.json({
+            success: true,
+            message: "Order cancelled succussfully",
+            res
+        })
+    } catch (error) {
+        return Response.json({
+            success: false,
+            message: "Failed to cancel Order. Some error occured!",
+            details: error
+        })
+    }
+
+}

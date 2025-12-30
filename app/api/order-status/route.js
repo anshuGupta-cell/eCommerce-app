@@ -3,11 +3,11 @@ import pool from "@/lib/db"
 // set order status to confirmed || delivered 
 export const PATCH = async (req) => {
 
-    const { oid, status } = await req.json()
+    const { oid, status, description } = await req.json()
 
     try {
 
-        await pool.query(`UPDATE "order" SET status = $1 WHERE oid = $2`, [status, oid])
+        await pool.query(`UPDATE "order" SET status = $1, description = $2 WHERE oid = $3`, [status, description, oid])
 
         return Response.json({
             success: true,

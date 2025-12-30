@@ -14,7 +14,7 @@ import {
 const Navbar = () => {
     const pathName = usePathname()
     const [expanded, setExpanded] = useState(false)
-    const showNavbar = ["/", "/add-item", "/my-order", "/cart", "/contact", "/item", "/my-order"].includes(pathName) || pathName.startsWith("/my-order/")
+    const showNavbar = ["/", "/add-item", "/my-order", "/cart", "/delivery", "/item", "/my-order"].includes(pathName) || pathName.startsWith("/my-order/")
     const active = "rounded-lg font-bold text-lg"
     const [isDarkMode, setIsDarkMode] = useState(false)
     const sideMenuRef = useRef()
@@ -67,7 +67,7 @@ const Navbar = () => {
                             <Link onClick={closeMenu} className={`p-2 ${pathName == "/add-item" ? active : ""}`} href="/add-item">add-item</Link>
                             <Link onClick={closeMenu} className={`p-2 ${pathName == "/cart" ? active : ""}`} href="/cart">Cart</Link>
                             <Link onClick={closeMenu} className={`p-2 ${pathName == "/my-order" ? active : ""}`} href="/my-order">My Order</Link>
-                            <Link onClick={closeMenu} className={`p-2 ${pathName == "/contact" ? active : ""}`} href="/contact">Contact me</Link>
+                            <Link onClick={closeMenu} className={`p-2 ${pathName == "/delivery" ? active : ""}`} href="/delivery">delivery me</Link>
                         </div>
 
                         <div className="flex gap-2 items-center">
@@ -112,7 +112,7 @@ const Navbar = () => {
                     <Link onClick={closeMenu} className={`p-2 ${pathName == "/add-item" ? active : ""}`} href="/add-item">add-item</Link>
                     <Link onClick={closeMenu} className={`p-2 ${pathName == "/cart" ? active : ""}`} href="/cart">Cart</Link>
                     <Link onClick={closeMenu} className={`p-2 ${pathName == "/my-order" ? active : ""}`} href="/my-order">My Order</Link>
-                    <Link onClick={closeMenu} className={`p-2 ${pathName == "/contact" ? active : ""}`} href="/contact">Contact me</Link>
+                    <Link onClick={closeMenu} className={`p-2 ${pathName == "/delivery" ? active : ""}`} href="/delivery">delivery me</Link>
 
                 </div>
 
