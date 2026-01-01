@@ -1,0 +1,44 @@
+.container {
+
+    background: hsl(0, 100%, 100%);
+    padding: 1rem;
+}
+
+.form {
+    border: 1px solid black;
+    margin: auto;
+    padding: 1rem;
+    display: grid;
+    gap: 10px;
+    border-radius: 1rem;
+
+    ul {
+        display: grid;
+    }
+
+    input, textarea {
+        background: none;
+        border-radius: 0.70rem;
+        padding: .5rem;
+    }
+}
+
+/* button {
+    cursor: pointer;
+    padding: .5rem 1rem;
+    width: 80px;
+    margin: auto;
+    border-radius: 5rem;
+    background:#ebd567;
+    
+ 
+    &:active {
+        transform: scale(0.7);
+        transition: transform 0.1s ease-in-out;
+    }
+} */
+
+/* 
+button:active {
+    transform: scale(0.7);
+} */

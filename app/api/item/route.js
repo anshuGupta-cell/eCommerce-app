@@ -5,16 +5,15 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 
 // add item, vendor or admin adds this items
 export const POST = async (req) => {
+    try {
     const formData = await req.formData()
     const imgFile = formData.get("img")
     const data = formData.get("data")
-    const { item_name, eid, price, description, item_pic, stock } = JSON.parse(data)
+    const { item_name, eid, price, description, stock } = JSON.parse(data)
     const url = await uploadToCloudinary(imgFile);
-    // const { item_name, eid, price, description, item_pic, stock } = body
 
-    console.log(item_name, eid, price, description, item_pic, stock, url);
-    try {
-        const res = await pool.query(`insert into item(item_name, eid, price, description, item_pic, stock, item_pic) values($1, $2, $3, $4, $5, $6, $7) RETURNING item_id`, [item_name, eid, price, description, item_pic, stock, url])
+    console.log(item_name, eid, price, description, stock, url);
+        const res = await pool.query(`insert into item(item_name, eid, price, description, stock, item_pic) values($1, $2, $3, $4, $5, $6) RETURNING item_id`, [item_name, eid, price, description, stock, url])
 
         return Response.json({
             success: true,
