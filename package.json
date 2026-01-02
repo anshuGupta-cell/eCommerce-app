@@ -20,7 +20,8 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-redux": "^9.2.0",
-    "react-toastify": "^11.0.5"
+    "react-toastify": "^11.0.5",
+    "svix": "^1.84.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
