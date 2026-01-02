@@ -3,13 +3,19 @@
 import Button from "@/components/button/Button";
 import FeedbackCard from "@/components/feedbackCard/FeedbackCard";
 import Modal from "@/components/modal/Modal";
-import { useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-const Item = () => {
-    const searchParams = useSearchParams();
-    const item_id = searchParams.get("item_id");
+const Item = ({params}) => {
+
+    const pathname = usePathname()
+    const item_id = pathname.split('/')[2]
+    // const {item_id } = params;
+    console.log("item_id",  item_id);
+
+    
 
     const [item, setItem] = useState(null);
     const [cart, setCart] = useState([])

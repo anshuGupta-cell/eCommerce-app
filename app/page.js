@@ -64,7 +64,7 @@ const App = () => {
         {items.map((item) => (
 
           <div key={item.item_id} className="grid p-2 bg-blue-50 dark:bg-blue-50/10 gap-3 rounded-lg ">
-            <Link href={`/item/?item_id=${item.item_id}`}>
+            <Link href={`/item/${item.item_id}`}>
               <ul className="grid place-items-center">
                 <img className="h-full w-full object-cover rounded-lg aspect-square" src={item.item_pic} alt="img" />
               </ul>

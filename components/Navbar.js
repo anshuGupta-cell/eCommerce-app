@@ -14,7 +14,7 @@ import {
 const Navbar = () => {
     const pathName = usePathname()
     const [expanded, setExpanded] = useState(false)
-    const showNavbar = ["/", "/add-item", "/my-order", "/cart", "/delivery", "/item", "/my-order",  "/order-confirmation"].includes(pathName) || pathName.startsWith("/my-order/")
+    const showNavbar = ["/", "/add-item", "/my-order", "/cart", "/delivery", "/item", "/my-order",  "/order-confirmation"].includes(pathName) || pathName.startsWith("/my-order/") ||  pathName.startsWith("/item") 
     const active = "rounded-lg font-bold text-lg"
     const [isDarkMode, setIsDarkMode] = useState(false)
     const sideMenuRef = useRef()
