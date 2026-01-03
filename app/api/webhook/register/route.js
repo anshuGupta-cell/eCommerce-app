@@ -42,7 +42,6 @@ export const POST = async (req) => {
 
     const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
 
-
     if (!WEBHOOK_SECRET) {
         return new Response("please add webhook secret in env", { status: 400 })
     }
@@ -71,36 +70,36 @@ export const POST = async (req) => {
         })
     } catch (error) {
         console.error("Error verifying webhook");
-        return new Response("Error occured", { status: 400 })
+        return new Response("Error occured, verifying webhook", { status: 400 })
 
     }
     const { id } = evt.data
     const eventType = evt.type
     console.log(id);
 
-    if (eventType === "user.created") {
-        try {
-            const { email_addresses, primary_email_address_id } = evt.data
+    // if (eventType === "user.created") {
+    //     try {
+    //         const { email_addresses, primary_email_address_id } = evt.data
 
-            const primaryEmail = email_addresses.find(
-                (email) => email.id === primary_email_address_id
-            )
+    //         const primaryEmail = email_addresses.find(
+    //             (email) => email.id === primary_email_address_id
+    //         )
 
-            if (!primaryEmail) {
-                return new Response("No primary email found", { status: 400 })
-            }
+    //         if (!primaryEmail) {
+    //             return new Response("No primary email found", { status: 400 })
+    //         }
 
-            await pool.query(
-                `INSERT INTO "users" (uid, email) VALUES ($1, $2)`,
-                [evt.data.id, primaryEmail.email_address]
-            )
+    //         await pool.query(
+    //             `INSERT INTO "users" (uid, email) VALUES ($1, $2)`,
+    //             [evt.data.id, primaryEmail.email_address]
+    //         )
 
 
-        } catch (error) {
-            return new Response("Error creating user in db", {status:400})
-        }
+    //     } catch (error) {
+    //         return new Response("Error creating user in db", {status:400})
+    //     }
 
-    }
+    // }
 
     return new Response("Webhook received successfully", { status: 200 })
 
