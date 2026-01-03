@@ -80,15 +80,15 @@ export const POST = async (req) => {
 
     if (eventType === "user.created") {
         try {
-            const { email_addresses, primary_email_address_id } = evt.data
+            // const { email_addresses, primary_email_address_id } = evt.data
 
-            const primaryEmail = email_addresses.find(
-                (email) => email.id === primary_email_address_id
-            )
+            // const primaryEmail = email_addresses.find(
+            //     (email) => email.id === primary_email_address_id
+            // )
 
-            if (!primaryEmail) {
-                return new Response("No primary email found", { status: 400 })
-            }
+            // if (!primaryEmail) {
+            //     return new Response("No primary email found", { status: 400 })
+            // }
 
             // await pool.query(
             //     `INSERT INTO "users" (uid, name, pfp, email) VALUES ($1, $2, $3, $4)`,
