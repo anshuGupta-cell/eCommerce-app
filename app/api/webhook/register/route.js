@@ -73,33 +73,34 @@ export const POST = async (req) => {
         return new Response("Error occured, verifying webhook", { status: 400 })
 
     }
+
     const { id } = evt.data
     const eventType = evt.type
     console.log(id);
 
-    // if (eventType === "user.created") {
-    //     try {
-    //         const { email_addresses, primary_email_address_id } = evt.data
+    if (eventType === "user.created") {
+        try {
+            const { email_addresses, primary_email_address_id } = evt.data
 
-    //         const primaryEmail = email_addresses.find(
-    //             (email) => email.id === primary_email_address_id
-    //         )
+            const primaryEmail = email_addresses.find(
+                (email) => email.id === primary_email_address_id
+            )
 
-    //         if (!primaryEmail) {
-    //             return new Response("No primary email found", { status: 400 })
-    //         }
+            if (!primaryEmail) {
+                return new Response("No primary email found", { status: 400 })
+            }
 
-    //         await pool.query(
-    //             `INSERT INTO "users" (uid, email) VALUES ($1, $2)`,
-    //             [evt.data.id, primaryEmail.email_address]
-    //         )
+            await pool.query(
+                `INSERT INTO "users" (uid, name, pfp, email) VALUES ($1, $2, $3, $4)`,
+                [evt.data.id, primaryEmail.email_address, 'Anshu', 'snv,sv']
+            )
 
 
-    //     } catch (error) {
-    //         return new Response("Error creating user in db", {status:400})
-    //     }
+        } catch (error) {
+            return new Response("Error creating user in db", {status:400})
+        }
 
-    // }
+    }
 
     return new Response("Webhook received successfully", { status: 200 })
 
