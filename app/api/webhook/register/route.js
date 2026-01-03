@@ -97,7 +97,7 @@ export const POST = async (req) => {
 
 
         } catch (error) {
-            return new Response("Error creating user in db")
+            return new Response("Error creating user in db", {status:400})
         }
 
     }
