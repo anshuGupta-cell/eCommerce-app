@@ -56,10 +56,10 @@ export const POST = async (req) => {
         return new Response("Some error occured - no svix headers", { status: 400 })
     }
 
-    // const payload = await req.json()
-    // const body = JSON.stringify(payload)
+    const payload = await req.json()
+    const body = JSON.stringify(payload)
 
-    const body = await req.text()
+    // const body = await req.text()
 
     const wh = new Webhook(WEBHOOK_SECRET)
     let evt
