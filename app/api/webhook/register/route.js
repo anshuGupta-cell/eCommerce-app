@@ -1,47 +1,36 @@
+import { headers } from "next/headers"
+import { Webhook } from "svix"
 
-export const GET = async () => {
+export async function POST(req) {
+  try {
+    const secret = process.env.WEBHOOK_SECRET
+    if (!secret) return new Response("OK", { status: 200 })
 
-        return Response.json({
-            success: true,
-            message: "Item fetched successfully!",
-            
-        })
+    const h = headers()
+    const svix_id = h.get("svix-id")
+    const svix_timestamp = h.get("svix-timestamp")
+    const svix_signature = h.get("svix-signature")
 
+    if (!svix_id || !svix_timestamp || !svix_signature) {
+      return new Response("OK", { status: 200 })
+    }
+
+    const body = await req.text()
+    const wh = new Webhook(secret)
+
+    wh.verify(body, {
+      "svix-id": svix_id,
+      "svix-timestamp": svix_timestamp,
+      "svix-signature": svix_signature,
+    })
+
+    //  do async work later
+    return new Response("OK", { status: 200 })
+  } catch (e) {
+    console.error(e)
+    return new Response("OK", { status: 200 })
+  }
 }
-
-// import { headers } from "next/headers"
-// import { Webhook } from "svix"
-
-// export async function POST(req) {
-//   try {
-//     const secret = process.env.WEBHOOK_SECRET
-//     if (!secret) return new Response("OK", { status: 200 })
-
-//     const h = headers()
-//     const svix_id = h.get("svix-id")
-//     const svix_timestamp = h.get("svix-timestamp")
-//     const svix_signature = h.get("svix-signature")
-
-//     if (!svix_id || !svix_timestamp || !svix_signature) {
-//       return new Response("OK", { status: 200 })
-//     }
-
-//     const body = await req.text()
-//     const wh = new Webhook(secret)
-
-//     wh.verify(body, {
-//       "svix-id": svix_id,
-//       "svix-timestamp": svix_timestamp,
-//       "svix-signature": svix_signature,
-//     })
-
-//     // 🔹 do async work later
-//     return new Response("OK", { status: 200 })
-//   } catch (e) {
-//     console.error(e)
-//     return new Response("OK", { status: 200 })
-//   }
-// }
 
 
 // // import { headers } from "next/headers";
@@ -116,3 +105,14 @@ export const GET = async () => {
 // //     return new Response("Webhook received successfully", {status: 200})
 
 // // }
+
+
+export const GET = async () => {
+
+        return Response.json({
+            success: true,
+            message: "Item fetched successfully!",
+            
+        })
+
+}
